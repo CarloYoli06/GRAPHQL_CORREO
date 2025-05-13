@@ -32,9 +32,9 @@ const resolvers = {
         isVerified: false 
       });
 
-      await this.sendVerificationCode(user);
+      //await this.sendVerificationCode(user);
 
-      return true;
+      return user;
     },
 
     async verifyCode(_, { email, code }) {

@@ -26,7 +26,7 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    registerUser(email: String!, phone: String!): Boolean
+    registerUser(email: String!, phone: String!): User
     verifyCode(email: String!, code: String!): VerificationResult
     login(email: String!): Boolean
     resendCode(email: String!): Boolean
