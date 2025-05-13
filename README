@@ -1,0 +1,84 @@
+# GraphQL con Firebase Firestore - Guía Educativa
+
+## Descripción del Proyecto
+
+Este proyecto es una guía educativa diseñada para aprender a integrar GraphQL con Firebase Firestore. Proporciona una base sólida para construir aplicaciones modernas y escalables, implementando un servidor GraphQL utilizando Apollo Server conectado a una base de datos Firebase Firestore.
+
+El propósito principal de esta API es gestionar usuarios mediante consultas y mutaciones GraphQL, demostrando cómo realizar operaciones CRUD con una base de datos NoSQL en la nube.
+
+## Funcionalidades Principales
+
+### Consultas (Queries)
+- **Obtener todos los usuarios**: Recupera la lista completa de usuarios registrados
+- **Obtener usuario por ID**: Busca un usuario específico utilizando su identificador único
+
+### Mutaciones (Mutations)
+- **Crear nuevo usuario**: Añade un nuevo usuario a la base de datos proporcionando nombre y correo electrónico
+- **Actualizar usuario**: Modifica los datos de un usuario existente (nombre y/o correo electrónico)
+- **Eliminar usuario**: Remueve un usuario de la base de datos utilizando su ID
+
+## Tecnologías Utilizadas
+
+- **Node.js**: Entorno de ejecución para JavaScript
+- **Apollo Server**: Framework para construir APIs GraphQL
+- **Firebase Firestore**: Base de datos NoSQL en la nube
+- **GraphQL**: Lenguaje de consulta para APIs
+- **Firebase Admin SDK**: Para la integración segura con los servicios de Firebase
+
+## Configuración Inicial
+
+1. **Variables de entorno**: Crear un archivo `.env` con las credenciales de Firebase
+2. **Instalación de dependencias**: Ejecutar `npm install firebase-admin dotenv apollo-server graphql`
+3. **Inicialización de Firebase**: Configurar la conexión con Firestore
+
+## Estructura del Proyecto
+
+```
+/proyecto-graphql-firebase
+│
+├── .env                    # Archivo de configuración de entorno
+├── firebase.js             # Configuración de conexión a Firebase
+├── schema.graphql          # Esquema GraphQL
+├── resolvers.js            # Resolvers para las operaciones
+└── server.js               # Configuración del servidor Apollo
+```
+
+## Ejemplos de Uso
+
+### Consulta todos los usuarios
+```graphql
+query {
+  users {
+    id
+    name
+    email
+  }
+}
+```
+
+### Crea un nuevo usuario
+```graphql
+mutation {
+  createUser(input: {
+    name: "Juan Pérez",
+    email: "juan@example.com"
+  }) {
+    id
+    name
+    email
+  }
+}
+```
+
+## Requisitos Previos
+
+- Node.js (v14 o superior)
+- Cuenta de Firebase con proyecto configurado
+- Credenciales de servicio de Firebase (archivo JSON)
+
+## Instalación
+
+1. Clonar el repositorio
+2. Ejecutar `npm install`
+3. Configurar las variables de entorno en `.env`
+4. Iniciar el servidor con `npm start`
