@@ -23,5 +23,6 @@ if (!admin.apps.length) {
 
 const db = admin.firestore();
 const usersCollection = db.collection('users');
+const authCodesCollection = db.collection('authCodes');
 
-module.exports = { db, usersCollection };
+module.exports = { db, usersCollection, authCodesCollection, admin };

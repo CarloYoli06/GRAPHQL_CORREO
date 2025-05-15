@@ -1,9 +1,10 @@
 const userModel = require('../models/userModel');
 const authCodeModel = require('../models/AuthCodeModel');
+const {db} = require('../models/firebase'); // Asegúrate de que la ruta sea correcta
 const { validateEmail, validatePhone } = require('../utils/validators');
 const { sendVerificationCode } = require('../services/emailService');
 
-const CODE_EXPIRATION_MINUTES = 5;
+const CODE_EXPIRATION_MINUTES = 60; // 1 hora
 const RESEND_TIMEOUT_MS = 60000; // 1 minute
 
 const resolvers = {
@@ -32,7 +33,7 @@ const resolvers = {
         isVerified: false 
       });
 
-      //await this.sendVerificationCode(user);
+      await this.createVerificationCode(user);
 
       return user;
     },
@@ -127,12 +128,14 @@ const resolvers = {
           throw new Error('Por favor espera 1 minuto antes de solicitar un nuevo código');
         }
       }
+      await db.collection('authCodes').doc(user.id).delete();
 
-      await this.sendVerificationCode(user);
+      await this.createVerificationCode(user);
+
       return true;
     },
 
-    async sendVerificationCode(user) {
+    async createVerificationCode(user) {
       const code = Math.floor(100000 + Math.random() * 900000).toString();
       await authCodeModel.create({
         userId: user.id,

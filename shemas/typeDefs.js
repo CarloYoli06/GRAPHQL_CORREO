@@ -30,7 +30,7 @@ const typeDefs = gql`
     verifyCode(email: String!, code: String!): VerificationResult
     login(email: String!): Boolean
     resendCode(email: String!): Boolean
-    sendVerificationCode(email: String!): Boolean!
+    createVerificationCode(email: String!): Boolean!
   }
 `;
 

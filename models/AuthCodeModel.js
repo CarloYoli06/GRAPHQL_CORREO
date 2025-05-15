@@ -3,6 +3,7 @@ const { authCodesCollection } = require('./firebase');
 const create = async ({ userId, code, createdAt }) => {
   const newCode = { userId, code, createdAt };
   const docRef = await authCodesCollection.add(newCode);
+  
   return { id: docRef.id, ...newCode };
 };
 
